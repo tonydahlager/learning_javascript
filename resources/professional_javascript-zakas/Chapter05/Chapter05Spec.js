@@ -126,6 +126,35 @@ describe("Chapter 5 Specs - Reference Types", function(){
     });  
     
     describe("math object", function() {
+    	it("- uses min() and max() to find the smallest & largest numbers in a group", function(){
+    		MathObjectMinMaxEx01 = function(){
+    			var max = Math.max(3, 54, 32, 16);
+    			return max;
+    		};
+    		expect(MathObjectMinMaxEx01()).toEqual(54);
+    	});
+    	it("- uses apply() to find the max/min value of an array", function(){
+    		MathObjectMinMaxEx02 = function(){
+    			var values = [1, 2, 3, 4, 5, 6, 7, 8];
+    			var max = Math.max.apply(Math, values);
+    			return max;
+    		};
+    		expect(MathObjectMinMaxEx02()).toEqual(8);
+    	});
+    	it("- uses ceil, round, and floor to round numbers differently", function(){
+    		MathObjectRoundingExample01 = function(){
+    			Math.ceil(25.9); //Rounds to 26
+    			Math.ceil(25.5); //Rounds to 26
+    			Math.ceil(25.2); //Rounds to 26
+    			Math.floor(25.9); //Rounds to 25
+    			Math.floor(25.5); //Rounds to 25
+    			Math.floor(25.1); //Rounds to 25
+    			Math.round(25.9); //Rounds to 26
+    			Math.round(25.5); //Rounds to 26
+    			return Math.round(25.1); //Rounds to 25
+    		};
+    		expect(MathObjectRoundingExample01()).toEqual(25);
+   		});
     });
   });
   

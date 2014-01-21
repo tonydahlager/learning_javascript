@@ -69,4 +69,29 @@ describe("Chapter 6 Specs - Object Oriented Programming", function(){
         });
         */
     });
+    describe("page 177 - Accessor Properties", function(){
+    	it("- must be defined by using Object.defineProperty()", function(){
+    		AccessorPropertiesExample01 = function(){
+    			var book = {
+    				_year: 2004,
+    				edition: 1
+    			};
+    			Object.defineProperty(book, "year", {
+    				get: function(){
+    					return this._year;
+    				},
+    				set: function(newValue) {
+    					if (newValue > 2004) {
+    						this._year = newValue;
+    						this.edition += newValue - 2004;
+    					}
+    				}
+    			});
+    			book.year = 2005;
+    			return book.edition; //2
+    		};
+    		expect(AccessorPropertiesExample01()).toBe(2);
+    	});
+    	
+    });
 });
