@@ -92,6 +92,80 @@ describe("Chapter 6 Specs - Object Oriented Programming", function(){
     		};
     		expect(AccessorPropertiesExample01()).toBe(2);
     	});
-    	
     });
+    describe("page 180 - The Factory Pattern", function(){
+    	it("- encapsulates the creation of objects with specific interfaces", function(){
+    		FactoryPatternExample01 = function(){
+    		function createPerson(name, age, job){
+    			var o = new Object();
+    			o.name = name;
+    			o.age = age;
+    			o.job = job;
+    			o.sayName = function(){
+    				return this.name;
+    			};
+    			return o;
+    		};
+    		var person1 = createPerson("Nicholas", 29, "Software Engineer")
+    		return(person1.name);
+    		};
+    		expect(FactoryPatternExample01()).toBe("Nicholas");
+    	});
+    	it("- can be rewritten using constructor pattern", function(){
+    		ConstructorPatternExample01 = function(){
+    			function Person(name, age, job){
+    				this.name = name;
+    				this.age = age;
+    				this.job = job;
+    				this.sayName = function(){
+    					return this.name;
+    				};
+    			};
+    			var person1 = new Person("Greg", 27, "Doctor");
+    			return person1.sayName();
+    			};
+    		expect(ConstructorPatternExample01()).toBe("Greg");
+    	});
+    	it("- can create object using prototype property instead", function(){
+    		PrototypePatternExample01 = function(){
+    			function Person () {};
+    			Person.prototype.name = "Nicholas";
+    			Person.prototype.age = 29;
+    			Person.prototype.job = "Software Engineer";
+    			Person.prototype.sayName = function(){
+    				return this.name;
+    			};
+    			
+    			var1 = new Person();
+    			return var1.sayName();
+    		};
+    	expect(PrototypePatternExample01()).toBe("Nicholas");
+    	});
+    	it("- but its not possible to overwrite values on prototype",function(){
+    		PrototypeExample02 = function(){
+    			function Person(){};
+    			Person.prototype.name = "Nicholas";
+    			Person.prototype.age = 29;
+    			
+    			var person1 = new Person();
+    			var person2 = new Person();
+    			
+    			person1.name = "Greg";
+    			return person2.name;
+    		};
+    		expect(PrototypeExample02()).toBe("Nicholas");
+    	});
+		it("- however prototypes have a dynamic nature about them", function(){
+			PrototypePatternExample03 = function(){
+				function Person(){};
+				var friend = new Person();
+				Person.prototype.sayHi = function() {
+					return("Hi");
+				};
+				return friend.sayHi();
+			};
+			expect(PrototypePatternExample03()).toBe("Hi");
+		});
+    });
+    
 });
